@@ -29,6 +29,10 @@ let package = Package(
         .product(name: "MLXNN", package: "mlx-swift"),
         .product(name: "MLXRandom", package: "mlx-swift"),
         .product(name: "MLXFFT", package: "mlx-swift"),
+        // BuildingBlocks/LayerNormInference.swift imports MLXFast (uses
+        // MLXFast.layerNorm). Without this declaration, Xcode device builds
+        // fail at module resolution.
+        .product(name: "MLXFast", package: "mlx-swift"),
         // .product(name: "eSpeakNGLib", package: "eSpeakNGSwift"),
         .product(name: "MisakiSwift", package: "MisakiSwift"),
         .product(name: "MLXUtilsLibrary", package: "MLXUtilsLibrary")
