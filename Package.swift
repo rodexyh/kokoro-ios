@@ -16,10 +16,15 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/ml-explore/mlx-swift", from: "0.29.1"),
+    // Pinned exact to match KokoroTestApp's Package.resolved (the canonical
+    // reference app). The `from:` constraints in upstream 1.0.10 resolve to
+    // newer MisakiSwift 1.0.6 + mlx-swift 0.30.2 which produced sharp
+    // electronic noise during on-device audition (2026-05-11). KokoroTestApp
+    // works with 0.29.1 / 1.0.5; we match exactly.
+    .package(url: "https://github.com/ml-explore/mlx-swift", exact: "0.29.1"),
     // .package(url: "https://github.com/mlalma/eSpeakNGSwift", from: "1.0.1"),
-    .package(url: "https://github.com/mlalma/MisakiSwift", from: "1.0.4"),
-    .package(url: "https://github.com/mlalma/MLXUtilsLibrary.git", from: "0.0.6")
+    .package(url: "https://github.com/mlalma/MisakiSwift", exact: "1.0.5"),
+    .package(url: "https://github.com/mlalma/MLXUtilsLibrary.git", exact: "0.0.6")
   ],
   targets: [
     .target(
